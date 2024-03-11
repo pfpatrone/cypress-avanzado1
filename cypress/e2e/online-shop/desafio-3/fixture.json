@@ -1,0 +1,27 @@
+{
+    "products": 
+    {
+        "product1":
+        {
+            "name": "Blusa",
+            "price": "10",
+            "img": "https://www.product1.com",
+            "id": "12345"        
+            
+        },
+        "product2":
+        {
+            "name": "Remera",
+            "price": "20",
+            "img": "https://www.producto2.com",
+            "id": "123456"        
+            
+        }
+    },
+    "cliente":
+    {
+        "name": "Pablo",
+        "last": "Rivera",
+        "card": "1234567891011121"
+    }
+}

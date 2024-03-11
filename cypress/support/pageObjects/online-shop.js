@@ -125,7 +125,9 @@ class online_Shop {
         cy.get("[role='group']").should("not.contain", text);
     }
     
-    
+
+
+
 }
 
 export const onlineShopPage = new online_Shop();

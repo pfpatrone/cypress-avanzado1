@@ -1,0 +1,17 @@
+
+{
+    "product": 
+    {
+        "name": "pantalon",
+        "price": "1.44",
+        "img": "https://www.versace.com/ar/en/slim-fit-jeans/A81832-1A02233_AB8_43_1D100__.html",
+        "id": "123"        
+    },
+    "newProduct":
+    {
+        "name": "pantalonNew",
+        "price": "11.44",
+        "img": "https://www.Bersacedeee.com/ar/en/slim-fit-jea",
+        "id": "123"
+    }
+}

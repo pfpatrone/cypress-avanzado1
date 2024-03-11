@@ -11,4 +11,12 @@ module.exports = defineConfig({
     fixturesFolder: "cypress/e2e/",
     defaultCommandTimeout: 5000
   },
+  env:
+  {
+    usuario: "pushingit",
+    password: "123456!",
+    apiUrl: "https://pushing-it.onrender.com/api",
+    token: ""
+
+  } 
 });

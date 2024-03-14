@@ -8,6 +8,7 @@ const module = directorioName.split(/[/]/)[2]
 const scenarioName = directorioName.slice(directorioName.lastIndexOf('/') + 1).split('-').slice(0, -1).join('-');
 const testCaseId = directorioName.split(/[-]/).pop();
 
+
 describe(`${scenarioName} - ${module} `, () => {
     //API
     //1.Ingresar en pushing IT
@@ -33,6 +34,7 @@ describe(`${scenarioName} - ${module} `, () => {
     });
 
     it(`${module} - FE`, () => {
+        
         cy.fixture(`${module}/${scenarioName}-${testCaseId}/fixture`).then((data) => {
             //FE
             //1.Visitar la pagina
@@ -59,7 +61,24 @@ describe(`${scenarioName} - ${module} `, () => {
             checkOutPage.fillCard(data.cliente.card);
             checkOutPage.purchase();
             cy.wait(5000)
-            checkOutPage.checkPurchase();
+            cy.get("[id='sellId']").invoke('text').then((text) => {
+                const sellid = text.trim();
+            
+                // Ejecuta la consulta SQL para obtener los datos de la base de datos
+                const query = `SELECT distinct(s.id) FROM public.sells s inner join public."purchaseProducts" pp on s.id =pp.sell_id where s.id = '${text}'`;
+            
+                cy.task('connectDB', query).then((results) => {
+                    // Extrae los IDs de los resultados de la consulta SQL
+                    const ids = results.map(result => result.id.toString());
+            
+                    // Compara los IDs extraídos con el ID capturado
+                    expect(ids).to.include(sellid);
+                });
+            });
+            //SQL
+            //Verificar la orden de compra que se registro en la basde de datos SQL (Realizar un join
+            //para verificar ambas tablas ‘purchaseProduct’ y ‘sells’ / el id que comparten ambas
+            //tablas es el de sells)
             
 
 
@@ -67,15 +86,10 @@ describe(`${scenarioName} - ${module} `, () => {
     });
 
 
-    it.skip(`${module} - SQL`, () => {
-        cy.fixture(`${module}/${scenarioName}-${testCaseId}/fixture`).then((data) => {
-            //SQL
-            //Verificar la orden de compra que se registro en la basde de datos SQL (Realizar un join
-            //para verificar ambas tablas ‘purchaseProduct’ y ‘sells’ / el id que comparten ambas
-            //tablas es el de sells)
-        });
-    });
-
+   
+  
 
 
 });
+
+

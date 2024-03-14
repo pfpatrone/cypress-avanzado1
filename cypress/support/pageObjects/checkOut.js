@@ -27,11 +27,7 @@ class checkOut {
         
     }
 
-    checkPurchase()
-    {
-        cy.get("[data-cy='thankYou']");
-    }
-   
+
 
 }
 
